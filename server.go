@@ -23,7 +23,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	quic "github.com/lucas-clemente/quic-go"
+	quic "github.com/quic-go/quic-go"
 	kcp "github.com/xtaci/kcp-go/v5"
 	"github.com/xtaci/tcpraw"
 	"golang.org/x/crypto/pbkdf2"
@@ -568,7 +568,7 @@ func srvrRunQUICServer() error {
 		MaxConnectionReceiveWindow:     104857600,
 		MaxIncomingStreams:             1000,
 		MaxIncomingUniStreams:          1000,
-		KeepAlive:                      true,
+		KeepAlivePeriod:                5 * time.Second,
 		// Tracer: qlog.NewTracer(func(_ logging.Perspective, connID []byte) io.WriteCloser {
 		// filename := fmt.Sprintf("client_%x.qlog", connID)
 		// fmt.Println("filename=", filename)
